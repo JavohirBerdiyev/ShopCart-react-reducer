@@ -1,0 +1,33 @@
+import React from "react";
+import styled from "styled-components";
+import ProductCard from "../Products/ProductCard";
+import useShop from "../store/ShopContext";
+
+const Cart = () => {
+  const { total, products } = useShop();
+  return (
+    <>
+      <Title> Your cart total is {total}.00$</Title>
+      <ProductsWrapper>
+        {products.map((product, index) => (
+          <ProductCard {...product} key={index} />
+        ))}
+      </ProductsWrapper>
+    </>
+  );
+};
+
+const ProductsWrapper = styled.div`
+  width: fit-content;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 20px;
+`;
+
+const Title = styled.p`
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 20px;
+`;
+
+export default Cart;
